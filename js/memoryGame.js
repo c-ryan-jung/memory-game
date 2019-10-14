@@ -47,7 +47,7 @@ function startGame(){
     }
 }
 
-// used to 
+// used to toggle class functionalities
 var displayCard = function(){
     this.classList.toggle("open");
     this.classList.toggle("show");
@@ -67,31 +67,30 @@ function cardOpen() {
 };
 
 
-// @description when cards match
+//when cards match
 function matched(){
     current[0].classList.add("match", "disabled");
     current[1].classList.add("match", "disabled");
-    current[0].classList.remove("show", "open", "no-event");
-    current[1].classList.remove("show", "open", "no-event");
+    current[0].classList.remove("show", "open");
+    current[1].classList.remove("show", "open");
     current = [];
 }
 
-
-// description when cards don't match
+//unmatching cards
 function unmatched(){
     current[0].classList.add("unmatched");
     current[1].classList.add("unmatched");
     disable();
     setTimeout(function(){
-        current[0].classList.remove("show", "open", "no-event","unmatched");
-        current[1].classList.remove("show", "open", "no-event","unmatched");
+        current[0].classList.remove("show", "open", "unmatched");
+        current[1].classList.remove("show", "open", "unmatched");
         enable();
         current = [];
     },1100);
 }
 
 
-// @description disable cards temporarily
+//disable cards temporarily
 function disable(){
     Array.prototype.filter.call(cards, function(card){
         card.classList.add('disabled');
@@ -99,7 +98,7 @@ function disable(){
 }
 
 
-// @description enable cards and disable matched cards
+// enable cards and disable matched cards
 function enable(){
     Array.prototype.filter.call(cards, function(card){
         card.classList.remove('disabled');
